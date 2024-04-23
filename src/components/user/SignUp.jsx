@@ -78,8 +78,8 @@ const SignUp = () => {
   };
   return (
     <Container>
-      {JSON.stringify(data)}
-      {JSON.stringify(selectedId)}
+      {/* {JSON.stringify(data)}
+      {JSON.stringify(selectedId)} */}
       <Row className="mt-5">
         <Col sm={{ size: 6, offset: 3 }}>
           <Card color="dark" outline>
