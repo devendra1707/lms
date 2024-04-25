@@ -17,9 +17,10 @@ import userContext from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../services/UserService";
 import { doLogin } from "../../auth";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const userContxtData = useContext(userContext);
+  const userContextData = useContext(userContext);
 
   const navigate = useNavigate();
 
@@ -37,7 +38,7 @@ const Login = () => {
     console.log(loginDetail);
     //validation
     if (loginDetail.email.trim() == "" || loginDetail.password.trim() == "") {
-      //   toast.error("Email or Password  is required !!");
+        toast.error("Email or Password  is required !!");
       return;
     }
 
@@ -58,7 +59,7 @@ const Login = () => {
           navigate("/");
         });
 
-        // toast.success("Login Success");
+        toast.success("Login Success");
       })
       .catch((error) => {
         console.log(error);

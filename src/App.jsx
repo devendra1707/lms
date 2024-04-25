@@ -1,9 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect } from "react";
 import "./App.scss";
 import { ThemeContext } from "./context/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "./constants/themeConstants";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
 import MoonIcon from "./assets/icons/moon.svg";
 import SunIcon from "./assets/icons/sun.svg";
 import BaseLayout from "./layout/BaseLayout";
@@ -29,17 +35,21 @@ function App() {
 
   return (
     <>
+      {/* <BrowserRouter basename="/lms/"> */}
       <ToastContainer position="bottom-center" />
-      <Router>
+      <Router basename="/lms/">
         <Routes>
           <Route element={<BaseLayout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="*" element={<PageNotFound />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<SignUp />} />
+
+            {/* Domain */}
             <Route path="/domain" element={<ViewDomain />} />
             <Route path="/add/domain" element={<AddDomain />} />
             <Route path="/domain/:id" element={<UpdateDomain />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<SignUp />} />
           </Route>
         </Routes>
 
@@ -54,6 +64,7 @@ function App() {
           />
         </button>
       </Router>
+      {/* </BrowserRouter> */}
     </>
   );
 }

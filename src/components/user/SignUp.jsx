@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { signUpUser } from "../../services/UserService";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const SignUp = () => {
     // call server api for sending data
     signUpUser(selectedId, data)
       .then((resp) => {
-        alert("User is Registered Successfully !!! ");
+        toast.success("User is Registered Successfully !!!");
         setData({
           name: "",
           email: "",
@@ -61,6 +62,7 @@ const SignUp = () => {
       .catch((error) => {
         console.log(error);
         console.log("Error log");
+        toast.error("Something went wrong !!!");
         setError({
           errors: error,
           isError: true,

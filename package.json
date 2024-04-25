@@ -1,11 +1,13 @@
 {
-  "name": "myapp",
+  "name": "lms",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "/lms/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run rename-dist",
+    "rename-dist": "rimraf docs && move dist docs",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

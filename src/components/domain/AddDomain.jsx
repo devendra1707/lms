@@ -31,11 +31,11 @@ const AddDomain = () => {
 
     addDomains(domainData)
       .then((data) => {
-        // toast.success("country Added Successfully :: ");
+        toast.success("Domain Added Successfully :: ");
         navigate("/domain");
       })
       .catch((error) => {
-        // toast.error("Failed to Add country. Please try again later.");
+        toast.error("Failed to Add Domain. Please try again later.");
         console.log(error);
       });
   };
