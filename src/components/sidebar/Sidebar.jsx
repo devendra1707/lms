@@ -51,11 +51,11 @@ const Sidebar = () => {
 
   const userContextData = useContext(userContext);
   let navigate = useNavigate();
-  const [login, setLogin] = useState(isLoggedIn());
+  const [login, setLogin] = useState(false);
   const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-    // setLogin(isLoggedIn());
+    setLogin(isLoggedIn());
     setUser(getCurrentUserDetail());
   }, [login]);
 
