@@ -4,12 +4,15 @@ import { LIGHT_THEME } from "../../constants/themeConstants";
 import LogoBlue from "../../assets/images/logo_blue.svg";
 import LogoWhite from "../../assets/images/logo_white.svg";
 import {
+  MdLogin,
   MdOutlineAttachMoney,
   MdOutlineBarChart,
   MdOutlineClose,
+  MdOutlineCropOriginal,
   MdOutlineCurrencyExchange,
   MdOutlineDomain,
   MdOutlineGridView,
+  MdOutlineLogin,
   MdOutlineLogout,
   MdOutlineMessage,
   MdOutlinePeople,
@@ -46,26 +49,34 @@ const Sidebar = () => {
     };
   }, []);
 
-  const userContextData = useContext(userContext)
-  let navigate = useNavigate()
-  const [login, setLogin] = useState(false);
+  const userContextData = useContext(userContext);
+  let navigate = useNavigate();
+  const [login, setLogin] = useState(isLoggedIn());
   const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-    setLogin(isLoggedIn());
+    // setLogin(isLoggedIn());
     setUser(getCurrentUserDetail());
   }, [login]);
 
   const logout = () => {
-    doLogout(() => {
-      //logged out
-      setLogin(false);
+    // doLogout(() => {
+    //   //logged out
+    //   setLogin(false);
 
+    //   userContextData.setUser({
+    //     data: null,
+    //     login: false,
+    //   });
+
+    //   navigate("/");
+    // });
+    doLogout(() => {
+      setLogin(false);
       userContextData.setUser({
         data: null,
         login: false,
       });
-
       navigate("/");
     });
   };
@@ -163,14 +174,27 @@ const Sidebar = () => {
                 <span className="menu-link-text">Settings</span>
               </Link>
             </li>
-            <li className="menu-item">
-              <Link to="/" className="menu-link" onClick={logout}>
-                <span className="menu-link-icon">
-                  <MdOutlineLogout size={20} />
-                </span>
-                <span className="menu-link-text">Logout</span>
-              </Link>
-            </li>
+            {login ? (
+              // If user is logged in, render logout link
+              <li className="menu-item">
+                <button className="menu-link" onClick={logout}>
+                  <span className="menu-link-icon">
+                    <MdOutlineLogout size={20} />
+                  </span>
+                  <span className="menu-link-text">Logout</span>
+                </button>
+              </li>
+            ) : (
+              // If user is not logged in, render login link
+              <li className="menu-item">
+                <Link to="/login" className="menu-link">
+                  <span className="menu-link-icon">
+                    <MdOutlineLogin size={20} />
+                  </span>
+                  <span className="menu-link-text">Login</span>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
